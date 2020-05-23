@@ -1,8 +1,42 @@
 # Debate
 
+## Program Description
+*Input* to this program is data which matches:
+```
+[
+    {
+        "id": "25e5131a-63de-4e3c-878a-95e8f54b545f",
+        "proposition": "The sky is blue.",
+        "timesPresented": 12,
+        "choices": [
+            {
+                "id": "cad86e39-550a-4eb9-bd2d-0f3528f9f205",
+                "text": "True",
+                "timesChosen": 8
+            },
+            {
+                "id": "2e4ca602-780a-4276-829a-5dd5b4e56970",
+                "text": "False",
+                "timesChosen": 2,
+                "endWith": "What do you mean the sky isn't blue?"
+            }
+        ]
+    }
+]
+```
+*Output* of this program is a single page web application which will do the following:
+- Present the first proposition, along with its choices.
+- Allow the user to select a choice.
+- Display the results chosen by other users (including the response chosen).
+- Send the choice back to the server.
+- If the choice has `endWith`, then display that and end the program.
+- Otherwise, present the next proposition in a manner that respects continuity with the previous proposition.
+
 ## React Points to remember:
+Docs: https://reactjs.org/docs
 ### Components:
 - `this.props` = Props passed by JSX
+    - Special value: `this.props.children` holds children of JSX element
 - `this.state` = Internal. Set in constructor. Update using `setState` to re-render component. Two forms:
     - `this.setState(newStateObject)`
     - `this.setState(function(state, props) {return newStateObject})`
