@@ -2,11 +2,11 @@
 
 ## React Points to remember:
 ### Components:
-    - `this.props` = Props passed by JSX
-    - `this.state` = Internal. Set in constructor. Update using `setState` to re-render component. Two forms:
-        - `this.setState(newStateObject)`
-        - `this.setState(function(state, props) {return newStateObject})`
-    - Methods: `constructor(props)`, `componentDidMount()`, `componentWillUnmount()`, `render()`
+- `this.props` = Props passed by JSX
+- `this.state` = Internal. Set in constructor. Update using `setState` to re-render component. Two forms:
+    - `this.setState(newStateObject)`
+    - `this.setState(function(state, props) {return newStateObject})`
+- Methods: `constructor(props)`, `componentDidMount()`, `componentWillUnmount()`, `render()`
 
 ## Create React App Generated README:
 
