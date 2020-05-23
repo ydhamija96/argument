@@ -1,7 +1,7 @@
 # Debate
 
 ## Program Description
-*Input* to this program is data which matches:
+**Input** to this program is data which matches:
 ```
 [
     {
@@ -24,7 +24,7 @@
     }
 ]
 ```
-*Output* of this program is a single page web application which will do the following:
+**Output** of this program is a single page web application which will do the following:
 - Present the first proposition, along with its choices.
 - Allow the user to select a choice.
 - Display the results chosen by other users (including the response chosen).
