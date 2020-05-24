@@ -7,18 +7,18 @@ const propositions : PropositionT[] = [
         "id": "25e5131a-63de-4e3c-878a-95e8f54b545f",
         "text": "The sky is blue.",
         "timesPresented": 12,
-        "choices" : [
+        "choices": [
             {
-                "id": "",
+                "id": "cad86e39-550a-4eb9-bd2d-0f3528f9f205",
                 "text": "True",
                 "timesChosen": 8
             },
             {
-                "id": "",
+                "id": "2e4ca602-780a-4276-829a-5dd5b4e56970",
                 "text": "False",
                 "timesChosen": 2,
                 "endWith": "What do you mean the sky isn't blue?"
-            },
+            }
         ]
     }
 ];
