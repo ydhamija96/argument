@@ -1,6 +1,7 @@
 import React from 'react';
 import {Argument} from './Argument';
 import {PropositionT} from './types';
+import Container from "react-bootstrap/Container";
 
 const propositions : PropositionT[] = [
     {
@@ -26,7 +27,9 @@ const propositions : PropositionT[] = [
 function App() {
   return (
     <div className="App">
-        <Argument propositions={propositions} />
+        <Container>
+            <Argument propositions={propositions} />
+        </Container>
     </div>
   );
 }

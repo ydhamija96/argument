@@ -1,5 +1,7 @@
 import React from "react";
 import {ChoiceT} from "./types";
+import ButtonGroup from "react-bootstrap/ButtonGroup"
+import Button from "react-bootstrap/Button"
 
 type ChoicePickerProps = {
     choices : ChoiceT[];
@@ -10,13 +12,13 @@ export class ChoicePicker extends React.Component<ChoicePickerProps> {
         let choiceElements : JSX.Element[] = [];
 
         this.props.choices.forEach((choice) => {
-            choiceElements.push(<li key={choice.id}>{choice.text}</li>);
+            choiceElements.push(<Button variant="outline-dark" size="sm" key={choice.id}>{choice.text}</Button>);
         })
 
         return (
-            <ul>
+            <ButtonGroup vertical>
                 {choiceElements}
-            </ul>
+            </ButtonGroup>
         );
     }
 }
