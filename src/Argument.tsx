@@ -7,8 +7,6 @@ type ArgumentProps = {
 
 export class Argument extends React.Component<ArgumentProps> {
     render() {
-        let str : string = "Arguments:";
-        this.props.propositions.forEach((proposition) => {str += proposition.text});
-        return str;
+        return "Argument: " + this.props.propositions[0].text + this.props.propositions[0].choices[0].text + this.props.propositions[0].choices[1].text;
     }
 }
