@@ -63,3 +63,12 @@ it('should present only the options of the first proposition', () => {
     expect(queryByText(/proposition 2 choice 1/i)).not.toBeInTheDocument();
     expect(queryByText(/proposition 3 choice 1/i)).not.toBeInTheDocument();
 });
+
+it('should present second proposition', () => {
+    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["2"]} />);
+
+    expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
+    expect(queryByText(/text from proposition 2/i)).toBeInTheDocument();
+
+    expect(queryByText(/text from proposition 3/i)).not.toBeInTheDocument();
+});
