@@ -1,8 +1,8 @@
 import React from 'react';
 import {Argument} from './Argument';
-import {Proposition} from './types';
+import {PropositionT} from './types';
 
-const propositions : Proposition[] = [
+const propositions : PropositionT[] = [
     {
         "id": "25e5131a-63de-4e3c-878a-95e8f54b545f",
         "text": "The sky is blue.",

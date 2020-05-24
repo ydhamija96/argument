@@ -1,12 +1,20 @@
 import React from "react";
-import {Proposition} from "./types";
+import {PropositionT} from "./types";
+import {Proposition} from "./Proposition";
 
 type ArgumentProps = {
-    propositions: Proposition[]
+    propositions: PropositionT[]
 }
 
 export class Argument extends React.Component<ArgumentProps> {
     render() {
-        return "Argument: " + this.props.propositions[0].text + this.props.propositions[0].choices[0].text + this.props.propositions[0].choices[1].text;
+        return <div>
+            <h1>My Argument:</h1>
+            <Proposition 
+                timesPresented={this.props.propositions[0].timesPresented}
+                id={this.props.propositions[0].id}
+                text={this.props.propositions[0].text}
+                choices={this.props.propositions[0].choices} />
+        </div>;
     }
 }

@@ -53,4 +53,7 @@ it('should present only the options of the first proposition', () => {
 
     expect(queryByText(/Yes, sky is blue./i)).toBeInTheDocument();
     expect(queryByText(/No, sky not blue./i)).toBeInTheDocument();
+
+    expect(queryByText(/proposition 2 choice 1/i)).not.toBeInTheDocument();
+    expect(queryByText(/proposition 3 choice 1/i)).not.toBeInTheDocument();
 });

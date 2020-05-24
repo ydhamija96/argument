@@ -1,15 +1,15 @@
-export interface Entity {
+export interface EntityT {
     id: string;
 }
 
-export interface Choice extends Entity{
+export interface ChoiceT extends EntityT{
     text: string;
     timesChosen: number;
     endWith?: string;
 }
 
-export interface Proposition extends Entity{
+export interface PropositionT extends EntityT{
     text: string;
     timesPresented: number;
-    choices: Choice[];
+    choices: ChoiceT[];
 }
