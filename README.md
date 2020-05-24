@@ -7,7 +7,7 @@ The input to this program is data which matches:
 [
     {
         "id": "25e5131a-63de-4e3c-878a-95e8f54b545f",
-        "proposition": "The sky is blue.",
+        "text": "The sky is blue.",
         "timesPresented": 12,
         "choices": [
             {
