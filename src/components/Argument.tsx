@@ -7,9 +7,43 @@ type ArgumentProps = {
     choicesMade?: string[]
 }
 
-function toElement(proposition: PropositionT, current: boolean): JSX.Element {
+export class Argument extends React.Component<ArgumentProps> {
+    render() {
+        let propositionsToShow: PropositionT[] = [];
+
+        this.props.propositions.length > 0 &&
+            propositionsToShow.push(this.props.propositions[0]);
+
+        for (let i = 1; i < this.props.propositions.length; i++) {
+            if (this.wasPropositionAlreadyPresented(this.props.propositions[i - 1])) {
+                propositionsToShow.push(this.props.propositions[i]);
+            }
+        }
+
+        let currentProposition = propositionsToShow[propositionsToShow.length - 1].id;
+
+        return (
+            <div>
+                <h1>My Argument:</h1>
+                {propositionsToShow.map((it) => 
+                    toElement(it, it.id === currentProposition)
+                )}
+            </div>
+        );
+    }
+
+    private wasPropositionAlreadyPresented(proposition: PropositionT): boolean {
+        return proposition.choices
+            .map(it => it.id)
+            .filter(value =>
+                this.props.choicesMade && this.props.choicesMade.includes(value)
+            ).length > 0;
+    }
+}
+
+function toElement(proposition: PropositionT, isCurrent: boolean): JSX.Element {
     return <Proposition
-        past={!current} 
+        past={!isCurrent}
         key={proposition.id}
         timesPresented={proposition.timesPresented}
         id={proposition.id}
@@ -17,34 +51,3 @@ function toElement(proposition: PropositionT, current: boolean): JSX.Element {
         choices={proposition.choices} />;
 }
 
-export class Argument extends React.Component<ArgumentProps> {
-    render() {
-        let propositionsToShow: PropositionT[] = [];
-
-        this.props.propositions.length > 0 && 
-            propositionsToShow.push(this.props.propositions[0]);
-
-        for(let currentPropositionIndex = 1; currentPropositionIndex < this.props.propositions.length; currentPropositionIndex++){
-            let previousProposition = this.props.propositions[currentPropositionIndex-1];
-
-            let choicesOfPreviousProposition = previousProposition.choices.map(it => it.id);
-
-            let isPreviousPropositionPresented = choicesOfPreviousProposition.filter(
-                value => this.props.choicesMade && this.props.choicesMade?.includes(value)
-            ).length > 0;
-
-            if(isPreviousPropositionPresented) {
-                propositionsToShow.push(this.props.propositions[currentPropositionIndex]);
-            }
-        }
-
-        let currentProposition = propositionsToShow[propositionsToShow.length -1].id; 
-
-        return (
-            <div>
-                <h1>My Argument:</h1>
-                {propositionsToShow.map((it) => toElement(it, it.id === currentProposition))}
-            </div>
-        );
-    }
-}
