@@ -45,9 +45,7 @@ const propositions : PropositionT[] = [
 function App() {
   return (
     <div className="App">
-        <Container>
-            <Argument propositions={propositions} choicesMade={["2e4ca602-780a-4276-829a-5dd5b4e56970"]} />
-        </Container>
+        <Argument propositions={propositions} choicesMade={["2e4ca602-780a-4276-829a-5dd5b4e56970"]} />
     </div>
   );
 }

@@ -40,8 +40,8 @@ it('should display past proposition', () => {
     expect(queryByText(/proposition text/i)).toBeInTheDocument();
     expect(queryByText(/option 1/i)).toBeInTheDocument();
     expect(queryByText(/option 1/i)).toBeDisabled();
-    expect(queryByText(/option 1/i)).toHaveClass("btn-dark");
+    expect(queryByText(/option 1/i)?.parentElement).toHaveClass("selected");
     expect(queryByText(/option 2/i)).toBeInTheDocument();
     expect(queryByText(/option 2/i)).toBeDisabled();
-    expect(queryByText(/option 2/i)).toHaveClass("btn-light");
+    expect(queryByText(/option 2/i)?.parentElement).not.toHaveClass("selected");
 });

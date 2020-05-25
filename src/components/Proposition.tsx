@@ -2,9 +2,7 @@ import React from "react";
 import {PropositionT} from "../types";
 import {ChoicePicker} from "./ChoicePicker";
 import {ChoiceResults} from "./ChoiceResults";
-import ListGroup from "react-bootstrap/ListGroup";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import {Row, Col, Divider} from "antd";
 
 interface PropositionProps extends PropositionT {
     chosen?: string;
@@ -13,20 +11,17 @@ interface PropositionProps extends PropositionT {
 export class Proposition extends React.Component<PropositionProps> {
     render() {
         return (
-            <ListGroup variant="flush">
-                <ListGroup.Item>
-                    <Row className="align-items-center">
-                        <Col>
-                            {this.props.text}
-                        </Col>
-                        <Col>
-                            {this.props.chosen ?
-                                <ChoiceResults chosenId={this.props.chosen} choices={this.props.choices} /> :
-                                <ChoicePicker choices={this.props.choices} />}
-                        </Col>
-                    </Row>
-                </ListGroup.Item>
-            </ListGroup>
+            <Row gutter={16} justify="center">
+                <Divider />
+                <Col span={8}>
+                    {this.props.text}
+                </Col>
+                <Col span={8}>
+                    {this.props.chosen ?
+                        <ChoiceResults chosenId={this.props.chosen} choices={this.props.choices} /> :
+                        <ChoicePicker choices={this.props.choices} />}
+                </Col>
+            </Row>
         );
     }
 }

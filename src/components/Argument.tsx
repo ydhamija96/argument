@@ -2,6 +2,8 @@ import React from "react";
 import {Proposition} from "./Proposition";
 import {PropositionT} from "../types";
 import {isNullOrUndefined} from "util";
+import {Row} from "antd";
+import Title from "antd/lib/typography/Title";
 
 type ArgumentProps = {
     propositions: PropositionT[]
@@ -20,7 +22,9 @@ export class Argument extends React.Component<ArgumentProps> {
 
         return (
             <div>
-                <h1>My Argument:</h1>
+                <Row justify="center">
+                    <Title style={{marginBottom: "0"}}>My Argument</Title>
+                </Row>
                 {propositions.map((it) => this.toElement(it))}
             </div>
         );

@@ -10,17 +10,8 @@ const choices : ChoiceT[] = [
     { "id": "4", "text": "choice text 4", "timesChosen": 1, "endWith": "My name is Jeff." },
 ];
 
-it('should display results bars', () => {
-    const {queryByLabelText} = render(
-        <ChoiceResults 
-            choices = {choices}
-            chosenId = {"3"}
-            />
-    );
-    expect(queryByLabelText(/8/i)).toHaveClass("btn-light");
-    expect(queryByLabelText(/12/i)).toHaveClass("btn-light");
-    expect(queryByLabelText(/122/i)).toHaveClass("btn-dark");
-    expect(queryByLabelText(/1/i)).toHaveClass("btn-light");
+it.skip('should display results bars', () => {
+    fail("WIP");
 });
 
 it('should highlight chosen result', () => {
@@ -30,10 +21,10 @@ it('should highlight chosen result', () => {
             chosenId = {"3"}
             />
     );
-    expect(queryByText(/choice text 1/i)).toHaveClass("btn-light");
-    expect(queryByText(/choice text 2/i)).toHaveClass("btn-light");
-    expect(queryByText(/choice text 3/i)).toHaveClass("btn-dark");
-    expect(queryByText(/choice text 4/i)).toHaveClass("btn-light");
+    expect(queryByText(/choice text 1/i)?.parentElement).not.toHaveClass("selected");
+    expect(queryByText(/choice text 2/i)?.parentElement).not.toHaveClass("selected");
+    expect(queryByText(/choice text 3/i)?.parentElement).toHaveClass("selected");
+    expect(queryByText(/choice text 4/i)?.parentElement).not.toHaveClass("selected");
 });
 
 it('should display disabled choices', () => {

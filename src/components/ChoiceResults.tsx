@@ -1,11 +1,7 @@
 import React from "react";
 import {ChoiceT} from "../types";
-import ButtonGroup from "react-bootstrap/ButtonGroup"
-import Button from "react-bootstrap/Button"
 import ProgressBar from "react-bootstrap/ProgressBar"
-import Col from "react-bootstrap/Col"
-import Container from "react-bootstrap/Container"
-import Row from "react-bootstrap/Row"
+import {Row, Col, Button} from "antd";
 
 type ChoiceResultsProps = {
     choices: ChoiceT[];
@@ -21,31 +17,29 @@ export class ChoiceResults extends React.Component<ChoiceResultsProps> {
         this.props.choices.forEach((choice) => {
             let proportionChosen = choice.timesChosen * 100 / totalChosen;
             choiceElements.push(
-                <Container fluid key={choice.id}>
-                    <Row noGutters>
-                        <Col>
-                            <Button 
-                                disabled 
-                                variant={choice.id === this.props.chosenId ? "dark" : "light"} 
-                                size="sm" >
-                                {choice.text}
-                            </Button>
-                        </Col>
-                        <Col>
-                            <ProgressBar 
-                                now={proportionChosen} 
-                                label={choice.timesChosen + "/" + totalChosen} 
-                                style={{height:"31px", width:"150px"}} />
-                        </Col>
-                    </Row>
-                </Container>
+                <Row key={choice.id}>
+                    <Col flex="auto">
+                        <Button 
+                            block
+                            disabled 
+                            className={choice.id === this.props.chosenId ? "selected" : ""} >
+                            {choice.text}
+                        </Button>
+                    </Col>
+                    <Col flex="auto">
+                        <ProgressBar 
+                            now={proportionChosen} 
+                            label={choice.timesChosen + "/" + totalChosen} 
+                            style={{height:"31px", width:"150px"}} />
+                    </Col>
+                </Row>
             );
         })
 
         return (
-            <ButtonGroup vertical>
+            <div>
                 {choiceElements}
-            </ButtonGroup>
+            </div>
         );
     }
 }
