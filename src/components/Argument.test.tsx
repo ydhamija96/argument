@@ -4,42 +4,30 @@ import {Argument} from './Argument';
 
 const propositions = [
     {
-        "id": "1",
-        "text": "The sky is blue.",
+        "id": "p1",
+        "text": "proposition 1",
         "timesPresented": 12,
         "choices" : [
-            {
-                "id": "2",
-                "text": "Yes, sky is blue.",
-                "timesChosen": 8
-            },
-            {
-                "id": "3",
-                "text": "No, sky not blue.",
-                "timesChosen": 2,
-                "endWith": "What do you mean the sky isn't blue?"
-            },
-            {
-                "id": "4",
-                "text": "Not sure",
-                "timesChosen": 2
-            }
+            { "id": "p1c1", "text": "proposition 1 choice 1", "timesChosen": 8 },
+            { "id": "p1c2e", "text": "proposition 1 choice 2 with ending", "timesChosen": 2, 
+                "endWith": "proposition 1 choice 2 ending" },
+            { "id": "p1c3", "text": "proposition 1 choice 3", "timesChosen": 2 }
         ]
     },
     {
-        "id": "5",
-        "text": "text from proposition 2",
+        "id": "p2",
+        "text": "proposition 2",
         "timesPresented": 0,
         "choices": [
-            {"id": "6", "text": "proposition 2 choice 1", "timesChosen": 0}
+            {"id": "p2c1", "text": "proposition 2 choice 1", "timesChosen": 0}
         ]
     },
     {
-        "id": "7",
-        "text": "text from proposition 3",
+        "id": "p3",
+        "text": "proposition 3",
         "timesPresented": 0,
         "choices": [
-            {"id": "8", "text": "proposition 3 choice 1", "timesChosen": 0}
+            {"id": "p3c1", "text": "proposition 3 choice 1", "timesChosen": 0}
         ]
     }
 ];
@@ -47,34 +35,34 @@ const propositions = [
 it('should present only the first proposition', () => {
     const {queryByText} = render(<Argument propositions={propositions} />);
 
-    expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
-    expect(queryByText(/Yes, sky is blue./i)).toBeEnabled();
+    expect(queryByText("proposition 1")).toBeInTheDocument();
+    expect(queryByText("proposition 1 choice 1")?.parentNode).toBeEnabled();
 
-    expect(queryByText(/text from proposition 2/i)).not.toBeInTheDocument();
-    expect(queryByText(/text from proposition 3/i)).not.toBeInTheDocument();
+    expect(queryByText("proposition 2")).not.toBeInTheDocument();
+    expect(queryByText("proposition 3")).not.toBeInTheDocument();
 });
 
 it('should present second proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["2"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["p1c1"]} />);
 
-    expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
-    expect(queryByText(/Yes, sky is blue./i)).toBeDisabled();
+    expect(queryByText("proposition 1")).toBeInTheDocument();
+    expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
 
-    expect(queryByText(/text from proposition 2/i)).toBeInTheDocument();
-    expect(queryByText(/proposition 2 choice 1/i)).toBeEnabled();
+    expect(queryByText("proposition 2")).toBeInTheDocument();
+    expect(queryByText("proposition 2 choice 1")?.parentNode).toBeEnabled();
 
-    expect(queryByText(/text from proposition 3/i)).not.toBeInTheDocument();
+    expect(queryByText("proposition 3")).not.toBeInTheDocument();
 });
 
 it('should present third proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["2", "6"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["p1c1", "p2c1"]} />);
 
-    expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
-    expect(queryByText(/Yes, sky is blue./i)).toBeDisabled();
+    expect(queryByText("proposition 1")).toBeInTheDocument();
+    expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
 
-    expect(queryByText(/text from proposition 2/i)).toBeInTheDocument();
-    expect(queryByText(/proposition 2 choice 1/i)).toBeDisabled();
+    expect(queryByText("proposition 2")).toBeInTheDocument();
+    expect(queryByText("proposition 2 choice 1")?.parentNode).toBeDisabled();
 
-    expect(queryByText(/text from proposition 3/i)).toBeInTheDocument();
-    expect(queryByText(/proposition 3 choice 1/i)).toBeEnabled();
+    expect(queryByText("proposition 3")).toBeInTheDocument();
+    expect(queryByText("proposition 3 choice 1")?.parentNode).toBeEnabled();
 });

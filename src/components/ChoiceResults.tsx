@@ -36,10 +36,6 @@ export class ChoiceResults extends React.Component<ChoiceResultsProps> {
             );
         })
 
-        return (
-            <div>
-                {choiceElements}
-            </div>
-        );
+        return <div>{choiceElements}</div>;
     }
 }
