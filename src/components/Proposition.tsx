@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 interface PropositionProps extends PropositionT {
-    past?: boolean;
+    chosen?: string;
 }
 
 export class Proposition extends React.Component<PropositionProps> {
@@ -21,7 +21,7 @@ export class Proposition extends React.Component<PropositionProps> {
                         </Col>
                         <Col>
                             {
-                                this.props.past ?
+                                this.props.chosen ?
                                     <ChoiceResults choices={this.props.choices} /> :
                                     <ChoicePicker choices={this.props.choices} />
                             }

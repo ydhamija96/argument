@@ -30,7 +30,8 @@ it('should display current proposition', () => {
 
 it('should display past proposition', () => {
     const {queryByText} = render(
-        <Proposition past
+        <Proposition 
+            chosen = {"o1"}
             text = {proposition.text}
             timesPresented = {proposition.timesPresented}
             choices = {proposition.choices}

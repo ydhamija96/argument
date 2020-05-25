@@ -3,11 +3,11 @@ import {ChoiceT} from "../types";
 import ButtonGroup from "react-bootstrap/ButtonGroup"
 import Button from "react-bootstrap/Button"
 
-type ChoicePickerProps = {
+type ChoiceResultsProps = {
     choices : ChoiceT[];
 }
 
-export class ChoiceResults extends React.Component<ChoicePickerProps> {
+export class ChoiceResults extends React.Component<ChoiceResultsProps> {
     render() {
         let choiceElements : JSX.Element[] = [];
 

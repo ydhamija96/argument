@@ -1,6 +1,7 @@
 import React from "react";
 import {Proposition} from "./Proposition";
 import {PropositionT} from "../types";
+import {isNullOrUndefined} from "util";
 
 type ArgumentProps = {
     propositions: PropositionT[]
@@ -9,45 +10,54 @@ type ArgumentProps = {
 
 export class Argument extends React.Component<ArgumentProps> {
     render() {
-        let propositionsToShow: PropositionT[] = [];
+        let propositions: PropositionT[] = [];
 
-        this.props.propositions.length > 0 &&
-            propositionsToShow.push(this.props.propositions[0]);
-
-        for (let i = 1; i < this.props.propositions.length; i++) {
-            if (this.wasPropositionAlreadyPresented(this.props.propositions[i - 1])) {
-                propositionsToShow.push(this.props.propositions[i]);
+        for (let i = 0; i < this.props.propositions.length; i++) {
+            if (i === 0 || this.wasPropositionAlreadyPresented(this.props.propositions[i - 1])) {
+                propositions.push(this.props.propositions[i]);
             }
         }
-
-        let currentProposition = propositionsToShow[propositionsToShow.length - 1].id;
 
         return (
             <div>
                 <h1>My Argument:</h1>
-                {propositionsToShow.map((it) => 
-                    toElement(it, it.id === currentProposition)
-                )}
+                {propositions.map((it) => this.toElement(it))}
             </div>
         );
     }
 
     private wasPropositionAlreadyPresented(proposition: PropositionT): boolean {
-        return proposition.choices
-            .map(it => it.id)
-            .filter(value =>
-                this.props.choicesMade && this.props.choicesMade.includes(value)
-            ).length > 0;
+        return intersect(
+            proposition.choices.map(it => it.id), 
+            this.props.choicesMade
+        ).length > 0;
+    }
+
+    private toElement(proposition: PropositionT): JSX.Element {
+        let chosen = intersect(
+            proposition.choices.map(it => it.id),
+            this.props.choicesMade
+        );
+
+        return <Proposition
+            key={proposition.id}
+            chosen={chosen.length > 0 ? chosen[0] : undefined}
+            timesPresented={proposition.timesPresented}
+            id={proposition.id}
+            text={proposition.text}
+            choices={proposition.choices} />;
     }
 }
 
-function toElement(proposition: PropositionT, isCurrent: boolean): JSX.Element {
-    return <Proposition
-        past={!isCurrent}
-        key={proposition.id}
-        timesPresented={proposition.timesPresented}
-        id={proposition.id}
-        text={proposition.text}
-        choices={proposition.choices} />;
+function intersect<T>(a: T[] | undefined, b: T[] | undefined) : T[] {
+    if(isNullOrUndefined(a) || isNullOrUndefined(b)) {
+        return [];
+    }
+    let longer = a.length > b.length ? a : b;
+    let shorter = a.length > b.length ? b : a;
+    if(longer.length === 0){
+        return [];
+    }
+    return longer.filter(value => shorter && shorter.includes(value));
 }
 
