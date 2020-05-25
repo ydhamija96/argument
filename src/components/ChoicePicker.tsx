@@ -1,5 +1,5 @@
 import React from "react";
-import {ChoiceT} from "./types";
+import {ChoiceT} from "../types";
 import ButtonGroup from "react-bootstrap/ButtonGroup"
 import Button from "react-bootstrap/Button"
 

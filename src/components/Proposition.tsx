@@ -1,5 +1,5 @@
 import React from "react";
-import {PropositionT} from "./types";
+import {PropositionT} from "../types";
 import {ChoicePicker} from "./ChoicePicker";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";

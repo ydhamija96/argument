@@ -1,7 +1,7 @@
 import React from 'react';
-import {Argument} from './Argument';
 import {PropositionT} from './types';
 import Container from "react-bootstrap/Container";
+import {Argument} from './components/Argument';
 
 const propositions : PropositionT[] = [
     {

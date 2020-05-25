@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from "@testing-library/react";
 import {Proposition} from "./Proposition";
-import {PropositionT} from "./types";
+import {PropositionT} from "../types";
 
 it('should display options', () => {
     const proposition : PropositionT = {

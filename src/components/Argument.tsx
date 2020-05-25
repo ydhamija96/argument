@@ -1,6 +1,6 @@
 import React from "react";
-import {PropositionT} from "./types";
 import {Proposition} from "./Proposition";
+import {PropositionT} from "../types";
 
 type ArgumentProps = {
     propositions: PropositionT[]
