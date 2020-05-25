@@ -4,17 +4,17 @@ import {Argument} from './components/Argument';
 
 const propositions : PropositionT[] = [
     {
-        "id": "25e5131a-63de-4e3c-878a-95e8f54b545f",
+        "id": "p1",
         "text": "The sky is blue.",
         "timesPresented": 12,
         "choices": [
             {
-                "id": "cad86e39-550a-4eb9-bd2d-0f3528f9f205",
+                "id": "p1c1",
                 "text": "True",
                 "timesChosen": 8
             },
             {
-                "id": "2e4ca602-780a-4276-829a-5dd5b4e56970",
+                "id": "p1c2e",
                 "text": "False",
                 "timesChosen": 2,
                 "endWith": "What do you mean the sky isn't blue?"
@@ -22,20 +22,20 @@ const propositions : PropositionT[] = [
         ]
     },
     {
-        "id": "26e5131a-63de-4e3c-878a-95e8f54b545f",
+        "id": "p2",
         "text": "An orange is orange.",
         "timesPresented": 7,
         "choices": [
             {
-                "id": "cad87e39-550a-4eb9-bd2d-0f3528f9f205",
+                "id": "p2c1",
                 "text": "Yeah, it is.",
                 "timesChosen": 6
             },
             {
-                "id": "2e4ca603-780a-4276-829a-5dd5b4e56970",
+                "id": "p2c2e",
                 "text": "Nope.",
                 "timesChosen": 0,
-                "endWith": "What do you mean the sky isn't blue?"
+                "endWith": "Whaaaat?"
             }
         ]
     },
@@ -44,7 +44,7 @@ const propositions : PropositionT[] = [
 function App() {
   return (
     <div className="App">
-        <Argument propositions={propositions} choicesMade={["2e4ca602-780a-4276-829a-5dd5b4e56970"]} />
+        <Argument propositions={propositions} choicesMade={["p1c1", "p2c2e"]} />
     </div>
   );
 }
