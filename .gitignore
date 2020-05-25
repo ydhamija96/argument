@@ -1,5 +1,6 @@
 # Development Enviornment
 .vim
+*.swp
 
 # dependencies
 /node_modules
