@@ -28,7 +28,7 @@ export class ChoiceResults extends React.Component<ChoiceResultsProps> {
                             strokeWidth={2}
                             data-testid={"resultbar-" + choice.id}
                             strokeLinecap="square"
-                            status="active"
+                            status="normal"
                             percent={proportionChosen} 
                             showInfo={false} />
                     </Col>
