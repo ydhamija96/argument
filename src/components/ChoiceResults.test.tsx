@@ -10,6 +10,19 @@ const choices : ChoiceT[] = [
     { "id": "4", "text": "choice text 4", "timesChosen": 1, "endWith": "My name is Jeff." },
 ];
 
+it('should display results bars', () => {
+    const {queryByLabelText} = render(
+        <ChoiceResults 
+            choices = {choices}
+            chosenId = {"3"}
+            />
+    );
+    expect(queryByLabelText(/8/i)).toHaveClass("btn-light");
+    expect(queryByLabelText(/12/i)).toHaveClass("btn-light");
+    expect(queryByLabelText(/122/i)).toHaveClass("btn-dark");
+    expect(queryByLabelText(/1/i)).toHaveClass("btn-light");
+});
+
 it('should highlight chosen result', () => {
     const {queryByText} = render(
         <ChoiceResults 
