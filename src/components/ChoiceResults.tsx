@@ -1,7 +1,6 @@
 import React from "react";
 import {ChoiceT} from "../types";
-import ProgressBar from "react-bootstrap/ProgressBar"
-import {Row, Col, Button} from "antd";
+import {Row, Col, Button, Progress} from "antd";
 
 type ChoiceResultsProps = {
     choices: ChoiceT[];
@@ -18,19 +17,19 @@ export class ChoiceResults extends React.Component<ChoiceResultsProps> {
             let proportionChosen = choice.timesChosen * 100 / totalChosen;
             choiceElements.push(
                 <Row key={choice.id}>
-                    <Col flex="auto">
+                    <Col span={24}>
                         <Button 
                             block
                             disabled 
                             className={choice.id === this.props.chosenId ? "selected" : ""} >
                             {choice.text}
                         </Button>
-                    </Col>
-                    <Col flex="auto">
-                        <ProgressBar 
-                            now={proportionChosen} 
-                            label={choice.timesChosen + "/" + totalChosen} 
-                            style={{height:"31px", width:"150px"}} />
+                        <Progress 
+                            strokeWidth={2}
+                            strokeLinecap="square"
+                            status="active"
+                            percent={proportionChosen} 
+                            showInfo={false} />
                     </Col>
                 </Row>
             );

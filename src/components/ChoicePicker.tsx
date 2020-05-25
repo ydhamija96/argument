@@ -1,6 +1,6 @@
 import React from "react";
 import {ChoiceT} from "../types";
-import {Button} from "antd";
+import {Button, Col, Row} from "antd";
 
 type ChoicePickerProps = {
     choices : ChoiceT[];
@@ -12,9 +12,13 @@ export class ChoicePicker extends React.Component<ChoicePickerProps> {
 
         this.props.choices.forEach((choice) => {
             choiceElements.push(
-                <Button key={choice.id}>
-                    {choice.text}
-                </Button>
+                <Row key={choice.id}>
+                    <Col span={24}>
+                        <Button block>
+                            {choice.text}
+                        </Button>
+                    </Col>
+                </Row>
             );
         })
 
