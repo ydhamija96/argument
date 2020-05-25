@@ -26,6 +26,7 @@ export class ChoiceResults extends React.Component<ChoiceResultsProps> {
                         </Button>
                         <Progress 
                             strokeWidth={2}
+                            data-testid={"resultbar-" + choice.id}
                             strokeLinecap="square"
                             status="active"
                             percent={proportionChosen} 

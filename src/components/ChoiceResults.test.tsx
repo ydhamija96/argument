@@ -10,8 +10,17 @@ const choices : ChoiceT[] = [
     { "id": "4", "text": "choice text 4", "timesChosen": 1, "endWith": "My name is Jeff." },
 ];
 
-it.skip('should display results bars', () => {
-    fail("WIP");
+it('should display results bars', () => {
+    const {queryByTestId} = render(
+        <ChoiceResults 
+            choices = {choices}
+            chosenId = {"3"}
+            />
+    );
+    expect(queryByTestId("resultbar-1")).toBeInTheDocument();
+    expect(queryByTestId("resultbar-2")).toBeInTheDocument();
+    expect(queryByTestId("resultbar-3")).toBeInTheDocument();
+    expect(queryByTestId("resultbar-4")).toBeInTheDocument();
 });
 
 it('should highlight chosen result', () => {
