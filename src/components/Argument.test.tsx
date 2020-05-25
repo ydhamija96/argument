@@ -48,6 +48,7 @@ it('should present only the first proposition', () => {
     const {queryByText} = render(<Argument propositions={propositions} />);
 
     expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
+    expect(queryByText(/Yes, sky is blue./i)).toBeEnabled();
 
     expect(queryByText(/text from proposition 2/i)).not.toBeInTheDocument();
     expect(queryByText(/text from proposition 3/i)).not.toBeInTheDocument();
@@ -57,7 +58,10 @@ it('should present second proposition', () => {
     const {queryByText} = render(<Argument propositions={propositions} choicesMade={["2"]} />);
 
     expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
+    expect(queryByText(/Yes, sky is blue./i)).toBeDisabled();
+
     expect(queryByText(/text from proposition 2/i)).toBeInTheDocument();
+    expect(queryByText(/proposition 2 choice 1/i)).toBeEnabled();
 
     expect(queryByText(/text from proposition 3/i)).not.toBeInTheDocument();
 });
@@ -66,6 +70,11 @@ it('should present third proposition', () => {
     const {queryByText} = render(<Argument propositions={propositions} choicesMade={["2", "6"]} />);
 
     expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
+    expect(queryByText(/Yes, sky is blue./i)).toBeDisabled();
+
     expect(queryByText(/text from proposition 2/i)).toBeInTheDocument();
+    expect(queryByText(/proposition 2 choice 1/i)).toBeDisabled();
+
     expect(queryByText(/text from proposition 3/i)).toBeInTheDocument();
+    expect(queryByText(/proposition 3 choice 1/i)).toBeEnabled();
 });

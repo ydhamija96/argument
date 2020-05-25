@@ -3,30 +3,17 @@ import {render} from "@testing-library/react";
 import {Proposition} from "./Proposition";
 import {PropositionT} from "../types";
 
-it('should display options', () => {
-    const proposition : PropositionT = {
-        "id": "1",
-        "text": "The sky is blue.",
-        "timesPresented": 12,
-        "choices" : [
-            {
-                "id": "2",
-                "text": "Yes, sky is blue.",
-                "timesChosen": 8
-            },
-            {
-                "id": "3",
-                "text": "No, sky not blue.",
-                "timesChosen": 2,
-                "endWith": "What do you mean the sky isn't blue?"
-            },
-            {
-                "id": "4",
-                "text": "Not sure",
-                "timesChosen": 2
-            }
-        ]
-    };
+const proposition : PropositionT = {
+    "id": "p1",
+    "text": "proposition text",
+    "timesPresented": 12,
+    "choices" : [
+        { "id": "o1", "text": "option 1", "timesChosen": 8 },
+        { "id": "o2", "text": "option 2", "timesChosen": 2, "endWith": "end with text" }
+    ]
+};
+
+it('should display current proposition', () => {
     const {queryByText} = render(
         <Proposition 
             text = {proposition.text}
@@ -34,9 +21,24 @@ it('should display options', () => {
             choices = {proposition.choices}
             id = {proposition.id} />
     );
+    expect(queryByText(/proposition text/i)).toBeInTheDocument();
+    expect(queryByText(/option 1/i)).toBeInTheDocument();
+    expect(queryByText(/option 1/i)).toBeEnabled();
+    expect(queryByText(/option 2/i)).toBeInTheDocument();
+    expect(queryByText(/option 2/i)).toBeEnabled();
+});
 
-    expect(queryByText(/The sky is blue./i)).toBeInTheDocument();
-    expect(queryByText(/Yes, sky is blue./i)).toBeInTheDocument();
-    expect(queryByText(/No, sky not blue./i)).toBeInTheDocument();
-    expect(queryByText(/Not sure/i)).toBeInTheDocument();
+it('should display past proposition', () => {
+    const {queryByText} = render(
+        <Proposition past
+            text = {proposition.text}
+            timesPresented = {proposition.timesPresented}
+            choices = {proposition.choices}
+            id = {proposition.id} />
+    );
+    expect(queryByText(/proposition text/i)).toBeInTheDocument();
+    expect(queryByText(/option 1/i)).toBeInTheDocument();
+    expect(queryByText(/option 1/i)).toBeDisabled();
+    expect(queryByText(/option 2/i)).toBeInTheDocument();
+    expect(queryByText(/option 2/i)).toBeDisabled();
 });

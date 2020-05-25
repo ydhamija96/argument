@@ -7,8 +7,9 @@ type ArgumentProps = {
     choicesMade?: string[]
 }
 
-function toElement(proposition: PropositionT): JSX.Element {
+function toElement(proposition: PropositionT, current: boolean): JSX.Element {
     return <Proposition
+        past={!current} 
         key={proposition.id}
         timesPresented={proposition.timesPresented}
         id={proposition.id}
@@ -37,10 +38,12 @@ export class Argument extends React.Component<ArgumentProps> {
             }
         }
 
+        let currentProposition = propositionsToShow[propositionsToShow.length -1].id; 
+
         return (
             <div>
                 <h1>My Argument:</h1>
-                {propositionsToShow.map((it) => toElement(it))}
+                {propositionsToShow.map((it) => toElement(it, it.id === currentProposition))}
             </div>
         );
     }
