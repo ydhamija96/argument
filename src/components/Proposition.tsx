@@ -20,11 +20,9 @@ export class Proposition extends React.Component<PropositionProps> {
                             {this.props.text}
                         </Col>
                         <Col>
-                            {
-                                this.props.chosen ?
-                                    <ChoiceResults choices={this.props.choices} /> :
-                                    <ChoicePicker choices={this.props.choices} />
-                            }
+                            {this.props.chosen ?
+                                <ChoiceResults chosenId={this.props.chosen} choices={this.props.choices} /> :
+                                <ChoicePicker choices={this.props.choices} />}
                         </Col>
                     </Row>
                 </ListGroup.Item>
