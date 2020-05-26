@@ -29,7 +29,8 @@ const propositions : PropositionT[] = [
             {
                 "id": "p2c1",
                 "text": "Yeah, it is.",
-                "timesChosen": 6
+                "timesChosen": 6,
+                "endWith": "Aight bet."
             },
             {
                 "id": "p2c2e",
