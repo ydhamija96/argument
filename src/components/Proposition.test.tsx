@@ -16,6 +16,7 @@ const proposition : PropositionT = {
 it('should display current proposition', () => {
     const {queryByText} = render(
         <Proposition 
+            onChoose = {() => {}}
             text = {proposition.text}
             timesPresented = {proposition.timesPresented}
             choices = {proposition.choices}
@@ -31,6 +32,7 @@ it('should display current proposition', () => {
 it('should display past proposition', () => {
     const {queryByText} = render(
         <Proposition 
+            onChoose = {() => {}}
             chosen = {"o1"}
             text = {proposition.text}
             timesPresented = {proposition.timesPresented}

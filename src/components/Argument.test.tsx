@@ -45,7 +45,9 @@ it('should present only the first proposition', () => {
 });
 
 it('should present an early ending', () => {
-    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c2e"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} />);
+
+    queryByText("proposition 1 choice 2 with ending")?.click(); 
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
@@ -57,7 +59,9 @@ it('should present an early ending', () => {
 });
 
 it('should present second proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c1"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} />);
+
+    queryByText("proposition 1 choice 1")?.click(); 
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
@@ -69,7 +73,10 @@ it('should present second proposition', () => {
 });
 
 it('should present third proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c1", "p2c1"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} />);
+
+    queryByText("proposition 1 choice 1")?.click(); 
+    queryByText("proposition 2 choice 1")?.click(); 
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
@@ -82,7 +89,11 @@ it('should present third proposition', () => {
 });
 
 it('should present a late ending', () => {
-    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c3", "p2c1", "p3c2e"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} />);
+
+    queryByText("proposition 1 choice 3")?.click(); 
+    queryByText("proposition 2 choice 1")?.click(); 
+    queryByText("proposition 3 choice 2")?.click(); 
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();

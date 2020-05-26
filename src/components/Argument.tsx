@@ -6,7 +6,6 @@ import Title from "antd/lib/typography/Title";
 
 type ArgumentProps = {
     propositions: PropositionT[]
-    initialChoicesMade?: string[]
 }
 
 type ArgumentState = {
@@ -16,26 +15,32 @@ type ArgumentState = {
 export class Argument extends React.Component<ArgumentProps, ArgumentState> {
     constructor(props: ArgumentProps) {
         super(props);
-        this.state = {
-            choicesMade: props.initialChoicesMade || []
-        }; 
+        this.state = {choicesMade: []};
     }
+
+    private choose = (choice: ChoiceT) => {
+        this.setState(
+            (state, _) => (
+                {choicesMade: [...state.choicesMade, choice.id]}
+            )
+        );
+    };
 
     render() {
         let propositions: JSX.Element[] = [];
 
         for (let i = 0; i <= this.props.propositions.length; i++) {
-            if( i === 0 ) {
+            if (i === 0) {
                 propositions.push(this.toElement(this.props.propositions[i]));
                 continue;
             }
 
-            let choiceMade = this.getChoiceMade(this.props.propositions[i-1]);
-            if(choiceMade === null) {
+            let choiceMade = this.getChoiceMade(this.props.propositions[i - 1]);
+            if (choiceMade === null) {
                 break;
             }
 
-            if(choiceMade.endWith){
+            if (choiceMade.endWith) {
                 propositions.push(
                     <Row justify="center" key={choiceMade.id}>
                         {choiceMade.endWith}
@@ -63,6 +68,7 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
     private toElement(proposition: PropositionT): JSX.Element {
         return <Proposition
             key={proposition.id}
+            onChoose={this.choose}
             chosen={this.getChoiceMade(proposition)?.id || undefined}
             timesPresented={proposition.timesPresented}
             id={proposition.id}

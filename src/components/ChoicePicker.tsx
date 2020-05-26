@@ -4,6 +4,7 @@ import {Button, Col, Row} from "antd";
 
 type ChoicePickerProps = {
     choices : ChoiceT[];
+    onChoose : (a: ChoiceT) => void;
 }
 
 export class ChoicePicker extends React.Component<ChoicePickerProps> {
@@ -14,7 +15,7 @@ export class ChoicePicker extends React.Component<ChoicePickerProps> {
             choiceElements.push(
                 <Row key={choice.id}>
                     <Col span={24}>
-                        <Button block>
+                        <Button block onClick={() => this.props.onChoose(choice)} >
                             {choice.text}
                         </Button>
                     </Col>
