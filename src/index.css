@@ -41,5 +41,5 @@ button > span {
 }
 .fade-in-enter-active {
     opacity: 1;
-    transition: opacity 750ms;
+    transition: opacity 200ms;
 }
