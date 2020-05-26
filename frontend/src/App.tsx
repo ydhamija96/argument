@@ -1,6 +1,6 @@
 import React from 'react';
 import {Argument} from './components/Argument';
-import {title, propositions} from './data/demo';
+import {title, propositions} from './data/demo.json';
 
 function App() {
   return (
