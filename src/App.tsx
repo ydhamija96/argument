@@ -5,41 +5,34 @@ import {Argument} from './components/Argument';
 const propositions : PropositionT[] = [
     {
         "id": "p1",
-        "text": "The sky is blue.",
+        "text": "proposition 1",
         "timesPresented": 12,
-        "choices": [
-            {
-                "id": "p1c1",
-                "text": "True",
-                "timesChosen": 8
-            },
-            {
-                "id": "p1c2e",
-                "text": "False",
-                "timesChosen": 2,
-                "endWith": "What do you mean the sky isn't blue?"
-            }
+        "choices" : [
+            { "id": "p1c1", "text": "proposition 1 choice 1", "timesChosen": 8 },
+            { "id": "p1c2e", "text": "proposition 1 choice 2 with ending", "timesChosen": 2, 
+                "endWith": "proposition 1 choice 2 ending" },
+            { "id": "p1c3", "text": "proposition 1 choice 3", "timesChosen": 2 }
         ]
     },
     {
         "id": "p2",
-        "text": "An orange is orange.",
-        "timesPresented": 7,
+        "text": "proposition 2",
+        "timesPresented": 0,
         "choices": [
-            {
-                "id": "p2c1",
-                "text": "Yeah, it is.",
-                "timesChosen": 6,
-                "endWith": "Aight bet."
-            },
-            {
-                "id": "p2c2e",
-                "text": "Nope.",
-                "timesChosen": 0,
-                "endWith": "Whaaaat?"
-            }
+            {"id": "p2c1", "text": "proposition 2 choice 1", "timesChosen": 0}
         ]
     },
+    {
+        "id": "p3",
+        "text": "proposition 3",
+        "timesPresented": 0,
+        "choices": [
+            {"id": "p3c1e", "text": "proposition 3 choice 1", "timesChosen": 0,
+                "endWith": "proposition 3 choice 1 ending" },
+            {"id": "p3c2e", "text": "proposition 3 choice 2", "timesChosen": 0, 
+                "endWith": "proposition 3 choice 2 ending" }
+        ]
+    }
 ];
 
 function App() {
