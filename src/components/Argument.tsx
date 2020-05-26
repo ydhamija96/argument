@@ -54,7 +54,7 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
                 <Row justify="center">
                     <Title style={{marginBottom: "0"}}>My Argument</Title>
                 </Row>
-                <TransitionGroup className="example">
+                <TransitionGroup>
                     {elements}
                 </TransitionGroup>
             </div >
