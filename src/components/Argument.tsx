@@ -8,6 +8,7 @@ import TransitionGroup from "react-transition-group/TransitionGroup";
 
 type ArgumentProps = {
     propositions: PropositionT[]
+    title: string
 }
 
 type ArgumentState = {
@@ -27,6 +28,10 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
             )
         );
     };
+
+    componentDidMount() {
+        document.title = "Argument: " + this.props.title;
+    }
 
     render() {
         let elements: JSX.Element[] = [];
@@ -52,7 +57,7 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
         return (
             <div>
                 <Row justify="center">
-                    <Title style={{marginBottom: "0"}}>My Argument</Title>
+                    <Title style={{marginBottom: "0"}}>{this.props.title}</Title>
                 </Row>
                 <TransitionGroup>
                     {elements}

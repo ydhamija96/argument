@@ -35,7 +35,7 @@ const propositions = [
 ];
 
 it('should present only the first proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} />);
+    const {queryByText} = render(<Argument title="" propositions={propositions} />);
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeEnabled();
@@ -45,7 +45,7 @@ it('should present only the first proposition', () => {
 });
 
 it('should present an early ending', () => {
-    const {queryByText} = render(<Argument propositions={propositions} />);
+    const {queryByText} = render(<Argument title="" propositions={propositions} />);
 
     queryByText("proposition 1 choice 2 with ending")?.click(); 
 
@@ -59,7 +59,7 @@ it('should present an early ending', () => {
 });
 
 it('should present second proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} />);
+    const {queryByText} = render(<Argument title="" propositions={propositions} />);
 
     queryByText("proposition 1 choice 1")?.click(); 
 
@@ -73,7 +73,7 @@ it('should present second proposition', () => {
 });
 
 it('should present third proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} />);
+    const {queryByText} = render(<Argument title="" propositions={propositions} />);
 
     queryByText("proposition 1 choice 1")?.click(); 
     queryByText("proposition 2 choice 1")?.click(); 
@@ -89,7 +89,7 @@ it('should present third proposition', () => {
 });
 
 it('should present a late ending', () => {
-    const {queryByText} = render(<Argument propositions={propositions} />);
+    const {queryByText} = render(<Argument title="" propositions={propositions} />);
 
     queryByText("proposition 1 choice 3")?.click(); 
     queryByText("proposition 2 choice 1")?.click(); 
