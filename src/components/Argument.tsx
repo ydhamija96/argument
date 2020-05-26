@@ -6,10 +6,21 @@ import Title from "antd/lib/typography/Title";
 
 type ArgumentProps = {
     propositions: PropositionT[]
-    choicesMade?: string[]
+    initialChoicesMade?: string[]
 }
 
-export class Argument extends React.Component<ArgumentProps> {
+type ArgumentState = {
+    choicesMade: string[]
+}
+
+export class Argument extends React.Component<ArgumentProps, ArgumentState> {
+    constructor(props: ArgumentProps) {
+        super(props);
+        this.state = {
+            choicesMade: props.initialChoicesMade || []
+        }; 
+    }
+
     render() {
         let propositions: JSX.Element[] = [];
 
@@ -46,7 +57,7 @@ export class Argument extends React.Component<ArgumentProps> {
     }
 
     private getChoiceMade(proposition: PropositionT): ChoiceT | null {
-        return proposition.choices.find((it) => this.props.choicesMade?.includes(it.id)) || null;
+        return proposition.choices.find((it) => this.state.choicesMade.includes(it.id)) || null;
     }
 
     private toElement(proposition: PropositionT): JSX.Element {

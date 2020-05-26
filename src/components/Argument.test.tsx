@@ -45,7 +45,7 @@ it('should present only the first proposition', () => {
 });
 
 it('should present an early ending', () => {
-    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["p1c2e"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c2e"]} />);
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
@@ -57,7 +57,7 @@ it('should present an early ending', () => {
 });
 
 it('should present second proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["p1c1"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c1"]} />);
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
@@ -69,7 +69,7 @@ it('should present second proposition', () => {
 });
 
 it('should present third proposition', () => {
-    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["p1c1", "p2c1"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c1", "p2c1"]} />);
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();
@@ -82,7 +82,7 @@ it('should present third proposition', () => {
 });
 
 it('should present a late ending', () => {
-    const {queryByText} = render(<Argument propositions={propositions} choicesMade={["p1c3", "p2c1", "p3c2e"]} />);
+    const {queryByText} = render(<Argument propositions={propositions} initialChoicesMade={["p1c3", "p2c1", "p3c2e"]} />);
 
     expect(queryByText("proposition 1")).toBeInTheDocument();
     expect(queryByText("proposition 1 choice 1")?.parentNode).toBeDisabled();

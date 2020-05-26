@@ -44,7 +44,7 @@ const propositions : PropositionT[] = [
 function App() {
   return (
     <div className="App">
-        <Argument propositions={propositions} choicesMade={["p1c1", "p2c2e"]} />
+        <Argument propositions={propositions} />
     </div>
   );
 }
