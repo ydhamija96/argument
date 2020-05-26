@@ -11,10 +11,10 @@ export class ChoiceResults extends React.Component<ChoiceResultsProps> {
     render() {
         let choiceElements : JSX.Element[] = [];
 
-        let totalChosen = this.props.choices.map(it => it.timesChosen).reduce((acc, next) => acc+next, 0);
+        let totalChosen = 1 + this.props.choices.map(it => it.timesChosen).reduce((acc, next) => acc+next, 0);
 
         this.props.choices.forEach((choice) => {
-            let proportionChosen = choice.timesChosen * 100 / totalChosen;
+            let proportionChosen = (((this.props.chosenId === choice.id ? 1 : 0) + choice.timesChosen) * 100) / totalChosen;
             choiceElements.push(
                 <Row key={choice.id}>
                     <Col span={24}>
