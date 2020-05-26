@@ -1,7 +1,7 @@
 import React from "react";
 import {Proposition} from "./Proposition";
 import {PropositionT, ChoiceT} from "../types";
-import {Row} from "antd";
+import {Row, Divider} from "antd";
 import Title from "antd/lib/typography/Title";
 import CSSTransition from "react-transition-group/CSSTransition";
 import TransitionGroup from "react-transition-group/TransitionGroup";
@@ -73,9 +73,12 @@ export class Argument extends React.Component<PropsT, StateT> {
     private toEndingElement(choice: ChoiceT): JSX.Element {
         return (
             <CSSTransition key={choice.id} classNames="fade-in" in={false} timeout={1000}>
-                <Row justify="center">
-                    {choice.endWith}
-                </Row>
+                <div>
+                    <Divider />
+                    <Row justify="center">
+                        {choice.endWith}
+                    </Row>
+                </div>
             </CSSTransition>
         );
     }
@@ -83,13 +86,16 @@ export class Argument extends React.Component<PropsT, StateT> {
     private toPropositionElement(proposition: PropositionT): JSX.Element {
         return (
             <CSSTransition key={proposition.id} classNames="fade-in" in={false} timeout={1000}>
-                <Proposition
-                    onChoose={this.choose}
-                    chosen={this.getChoiceMade(proposition)?.id || undefined}
-                    timesPresented={proposition.timesPresented}
-                    id={proposition.id}
-                    text={proposition.text}
-                    choices={proposition.choices} />
+                <div>
+                    <Divider />
+                    <Proposition
+                        onChoose={this.choose}
+                        chosen={this.getChoiceMade(proposition)?.id || undefined}
+                        timesPresented={proposition.timesPresented}
+                        id={proposition.id}
+                        text={proposition.text}
+                        choices={proposition.choices} />
+                </div>
             </CSSTransition>
         );
     }

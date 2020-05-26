@@ -2,7 +2,7 @@ import React from "react";
 import {PropositionT, ChoiceT} from "../types";
 import {ChoicePicker} from "./ChoicePicker";
 import {ChoiceResults} from "./ChoiceResults";
-import {Row, Col, Divider} from "antd";
+import {Row, Col} from "antd";
 
 interface PropsT extends PropositionT {
     chosen?: string;
@@ -13,7 +13,6 @@ export class Proposition extends React.Component<PropsT> {
     render() {
         return (
             <Row gutter={16} justify="center">
-                <Divider />
                 <Col span={8}>
                     {this.props.text}
                 </Col>
