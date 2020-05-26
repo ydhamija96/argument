@@ -18,14 +18,18 @@ code {
 
 button {
     text-align: left !important;
-    overflow: hidden !important;
+    white-space: normal;
+    height: auto !important;
+}
+button > span {
+    white-space: normal;
 }
 
 .ant-progress {
     position:absolute;
     left:1px;
     margin-right:1px;
-    top:17px;
+    top:-11px;
 }
 .ant-progress-line {
     width: calc(100% - 2px) !important;
