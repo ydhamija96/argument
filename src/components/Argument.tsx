@@ -6,28 +6,20 @@ import Title from "antd/lib/typography/Title";
 import CSSTransition from "react-transition-group/CSSTransition";
 import TransitionGroup from "react-transition-group/TransitionGroup";
 
-type ArgumentProps = {
+type PropsT = {
     propositions: PropositionT[]
     title: string
 }
 
-type ArgumentState = {
+type StateT = {
     choicesMade: string[]
 }
 
-export class Argument extends React.Component<ArgumentProps, ArgumentState> {
-    constructor(props: ArgumentProps) {
+export class Argument extends React.Component<PropsT, StateT> {
+    constructor(props: PropsT) {
         super(props);
         this.state = {choicesMade: []};
     }
-
-    private choose = (choice: ChoiceT) => {
-        this.setState(
-            (state, _) => (
-                {choicesMade: [...state.choicesMade, choice.id]}
-            )
-        );
-    };
 
     componentDidMount() {
         document.title = "Argument: " + this.props.title;
@@ -65,6 +57,14 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
             </div >
         );
     }
+
+    private choose = (choice: ChoiceT) => {
+        this.setState(
+            (state, _) => (
+                {choicesMade: [...state.choicesMade, choice.id]}
+            )
+        );
+    };
 
     private getChoiceMade(proposition: PropositionT): ChoiceT | null {
         return proposition.choices.find((it) => this.state.choicesMade.includes(it.id)) || null;

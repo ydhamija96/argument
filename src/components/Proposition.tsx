@@ -4,12 +4,12 @@ import {ChoicePicker} from "./ChoicePicker";
 import {ChoiceResults} from "./ChoiceResults";
 import {Row, Col, Divider} from "antd";
 
-interface PropositionProps extends PropositionT {
+interface PropsT extends PropositionT {
     chosen?: string;
-    onChoose: (choice: ChoiceT) => void;  
+    onChoose: (choice: ChoiceT) => void;
 }
 
-export class Proposition extends React.Component<PropositionProps> {
+export class Proposition extends React.Component<PropsT> {
     render() {
         return (
             <Row gutter={16} justify="center">
@@ -18,9 +18,11 @@ export class Proposition extends React.Component<PropositionProps> {
                     {this.props.text}
                 </Col>
                 <Col span={8}>
-                    {this.props.chosen ?
-                        <ChoiceResults chosenId={this.props.chosen} choices={this.props.choices} /> :
-                        <ChoicePicker choices={this.props.choices} onChoose={this.props.onChoose} />}
+                    {
+                        this.props.chosen ?
+                            <ChoiceResults chosenId={this.props.chosen} choices={this.props.choices} /> :
+                            <ChoicePicker choices={this.props.choices} onChoose={this.props.onChoose} />
+                    }
                 </Col>
             </Row>
         );
