@@ -27,11 +27,11 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
     };
 
     render() {
-        let propositions: JSX.Element[] = [];
+        let elements: JSX.Element[] = [];
 
         for (let i = 0; i <= this.props.propositions.length; i++) {
             if (i === 0) {
-                propositions.push(this.toElement(this.props.propositions[i]));
+                elements.push(this.toElement(this.props.propositions[i]));
                 continue;
             }
 
@@ -41,14 +41,14 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
             }
 
             if (choiceMade.endWith) {
-                propositions.push(
+                elements.push(
                     <Row justify="center" key={choiceMade.id}>
                         {choiceMade.endWith}
                     </Row>
                 );
                 continue;
             }
-            propositions.push(this.toElement(this.props.propositions[i]));
+            elements.push(this.toElement(this.props.propositions[i]));
         }
 
         return (
@@ -56,7 +56,7 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
                 <Row justify="center">
                     <Title style={{marginBottom: "0"}}>My Argument</Title>
                 </Row>
-                {propositions}
+                {elements}
             </div>
         );
     }
