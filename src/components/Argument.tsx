@@ -3,6 +3,8 @@ import {Proposition} from "./Proposition";
 import {PropositionT, ChoiceT} from "../types";
 import {Row} from "antd";
 import Title from "antd/lib/typography/Title";
+import CSSTransition from "react-transition-group/CSSTransition";
+import TransitionGroup from "react-transition-group/TransitionGroup";
 
 type ArgumentProps = {
     propositions: PropositionT[]
@@ -31,7 +33,7 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
 
         for (let i = 0; i <= this.props.propositions.length; i++) {
             if (i === 0) {
-                elements.push(this.toElement(this.props.propositions[i]));
+                elements.push(this.toPropositionElement(this.props.propositions[i]));
                 continue;
             }
 
@@ -41,14 +43,10 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
             }
 
             if (choiceMade.endWith) {
-                elements.push(
-                    <Row justify="center" key={choiceMade.id}>
-                        {choiceMade.endWith}
-                    </Row>
-                );
+                elements.push(this.toEndingElement(choiceMade));
                 continue;
             }
-            elements.push(this.toElement(this.props.propositions[i]));
+            elements.push(this.toPropositionElement(this.props.propositions[i]));
         }
 
         return (
@@ -56,8 +54,10 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
                 <Row justify="center">
                     <Title style={{marginBottom: "0"}}>My Argument</Title>
                 </Row>
-                {elements}
-            </div>
+                <TransitionGroup className="example">
+                    {elements}
+                </TransitionGroup>
+            </div >
         );
     }
 
@@ -65,14 +65,27 @@ export class Argument extends React.Component<ArgumentProps, ArgumentState> {
         return proposition.choices.find((it) => this.state.choicesMade.includes(it.id)) || null;
     }
 
-    private toElement(proposition: PropositionT): JSX.Element {
-        return <Proposition
-            key={proposition.id}
-            onChoose={this.choose}
-            chosen={this.getChoiceMade(proposition)?.id || undefined}
-            timesPresented={proposition.timesPresented}
-            id={proposition.id}
-            text={proposition.text}
-            choices={proposition.choices} />;
+    private toEndingElement(choice: ChoiceT): JSX.Element {
+        return (
+            <CSSTransition key={choice.id} classNames="fade-in" in={false} timeout={1000}>
+                <Row justify="center">
+                    {choice.endWith}
+                </Row>
+            </CSSTransition>
+        );
+    }
+
+    private toPropositionElement(proposition: PropositionT): JSX.Element {
+        return (
+            <CSSTransition key={proposition.id} classNames="fade-in" in={false} timeout={1000}>
+                <Proposition
+                    onChoose={this.choose}
+                    chosen={this.getChoiceMade(proposition)?.id || undefined}
+                    timesPresented={proposition.timesPresented}
+                    id={proposition.id}
+                    text={proposition.text}
+                    choices={proposition.choices} />
+            </CSSTransition>
+        );
     }
 }
