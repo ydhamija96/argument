@@ -26,45 +26,45 @@ export class Argument extends React.Component<PropsT, StateT> {
     }
 
     render() {
-        let elements: JSX.Element[] = [];
-
-        for (let i = 0; i <= this.props.propositions.length; i++) {
-            if (i === 0) {
-                elements.push(this.toPropositionElement(this.props.propositions[i]));
-                continue;
-            }
-
-            let choiceMade = this.getChoiceMade(this.props.propositions[i - 1]);
-            if (choiceMade === null) {
-                break;
-            }
-
-            if (choiceMade.endWith) {
-                elements.push(this.toEndingElement(choiceMade));
-                continue;
-            }
-            elements.push(this.toPropositionElement(this.props.propositions[i]));
-        }
-
+        const propositionsToShow = this.getPropositionsToShow();
         return (
             <div>
                 <Row justify="center">
                     <Title style={{marginBottom: "0"}}>{this.props.title}</Title>
                 </Row>
                 <TransitionGroup>
-                    {elements}
+                    {propositionsToShow.map(it => this.toPropositionElement(it))}
+                    {this.createEndingElement(last(propositionsToShow))}
                 </TransitionGroup>
             </div >
         );
     }
 
-    private choose = (choice: ChoiceT) => {
-        this.setState(
-            (state, _) => (
-                {choicesMade: [...state.choicesMade, choice.id]}
-            )
-        );
-    };
+    private getPropositionsToShow(): PropositionT[] {
+        let elements: PropositionT[] = [];
+
+        for (let i = 0; i < this.props.propositions.length; i++) {
+            elements.push(this.props.propositions[i]);
+
+            if (this.shouldBeTheLastOne(this.props.propositions[i])) {
+                break;
+            }
+        }
+
+        return elements;
+    }
+
+    private shouldBeTheLastOne(proposition: PropositionT): boolean {
+        let choiceMade = this.getChoiceMade(proposition);
+        return !!(choiceMade === null || choiceMade.endWith);
+    }
+
+    private createEndingElement(proposition: PropositionT): JSX.Element | null {
+        let choiceMade = this.getChoiceMade(proposition);
+        return (choiceMade && choiceMade.endWith) ?
+            this.toEndingElement(choiceMade) :
+            null;
+    }
 
     private getChoiceMade(proposition: PropositionT): ChoiceT | null {
         return proposition.choices.find((it) => this.state.choicesMade.includes(it.id)) || null;
@@ -93,4 +93,16 @@ export class Argument extends React.Component<PropsT, StateT> {
             </CSSTransition>
         );
     }
+
+    private choose = (choice: ChoiceT) => {
+        this.setState(
+            (state, _) => (
+                {choicesMade: [...state.choicesMade, choice.id]}
+            )
+        );
+    };
+}
+
+function last<T>(arr: T[]): T {
+    return arr[arr.length - 1];
 }
